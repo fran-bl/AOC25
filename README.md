@@ -4,7 +4,7 @@ Personal repository of AOC 2025 solutions.
 
 everything is written in **Python 3.12.3**
 
-[Advent if Cide](https://adventofcode.com/)
+[Advent of Code](https://adventofcode.com/)
 
 - [Day 1](01/solution.py): ⭐⭐
 - [Day 2](02/solution.py):
