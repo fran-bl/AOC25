@@ -18,23 +18,22 @@ def part_1(data):
 
 
 def part_2(data):
-    total = 0
     nums = set()
 
     for L, R in data:
-        for f in factors(len(str(L))):
-            for i in range(pow(10, f - 1), pow(10, f)):
-                n = int(str(i) * (len(str(L)) // f))
+        strL, strR = str(L), str(R)
+
+        for f in factors(len(strL)):
+            for i in range(int(strL[:f]), pow(10, f)):
+                n = int(str(i) * (len(strL) // f))
                 if L <= n <= R: nums.add(n)
 
-        for f in factors(len(str(R))):
-            for i in range(pow(10, f - 1), pow(10, f)):
-                n = int(str(i) * (len(str(R)) // f))
+        for f in factors(len(strR)):
+            for i in range(pow(10, f - 1), int(strR[:(f + 1)])):
+                n = int(str(i) * (len(strR) // f))
                 if L <= n <= R: nums.add(n)
 
-    total += sum(nums)
-
-    return total
+    return sum(nums)
 
 
 def factors(n):
