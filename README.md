@@ -7,7 +7,7 @@ everything is written in **Python 3.12.3**
 [Advent of Code](https://adventofcode.com/)
 
 - [Day 1](01/solution.py): ⭐⭐
-- [Day 2](02/solution.py):
+- [Day 2](02/solution.py): ⭐⭐
 - [Day 3](03/solution.py):
 - [Day 4](04/solution.py):
 - [Day 5](05/solution.py):
