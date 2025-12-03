@@ -29,7 +29,7 @@ def part_2(data):
                 if L <= n <= R: nums.add(n)
 
         for f in factors(len(strR)):
-            for i in range(pow(10, f - 1), int(strR[:(f + 1)])):
+            for i in range(pow(10, f - 1), int(strR[:f]) + 1):
                 n = int(str(i) * (len(strR) // f))
                 if L <= n <= R: nums.add(n)
 
