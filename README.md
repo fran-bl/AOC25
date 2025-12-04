@@ -9,7 +9,7 @@ everything is written in **Python 3.12.3**
 - [Day 1](01/solution.py): ⭐⭐
 - [Day 2](02/solution.py): ⭐⭐
 - [Day 3](03/solution.py): ⭐⭐
-- [Day 4](04/solution.py):
+- [Day 4](04/solution.py): ⭐⭐
 - [Day 5](05/solution.py):
 - [Day 6](06/solution.py):
 - [Day 7](07/solution.py):
