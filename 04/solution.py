@@ -4,56 +4,60 @@ def part_1(data):
     for i in range(len(data)):
         for j in range(len(data[i])):
             if data[i][j] != '@': continue
-
-            adj = 0
-
-            if i > 0:
-                if data[i - 1][j] == '@': adj += 1
-                if j > 0 and data[i - 1][j - 1] == '@': adj += 1
-                if j < len(data[i]) - 1 and data[i - 1][j + 1] == '@': adj += 1
-
-            if i < len(data) - 1:
-                if data[i + 1][j] == '@': adj += 1
-                if j > 0 and data[i + 1][j - 1] == '@': adj += 1
-                if j < len(data[i]) - 1 and data[i + 1][j + 1] == '@': adj += 1
-
-            if j > 0 and data[i][j - 1] == '@': adj += 1
-            if j < len(data[i]) - 1 and data[i][j + 1] == '@': adj += 1
-
-            cnt += not adj // 4
+            cnt += not check_area(data, i, j)[0] // 4
 
     return cnt
 
 
 def part_2(data):
-    cnt, removed = 0, 1
+    cnt = 0
 
-    while removed > 0:
-        removed = 0
+    for i in range(len(data)):
+        for j in range(len(data[i])):
+            if data[i][j] != '@': continue
+            cnt += rec_check(data, i, j)
 
-        for i in range(len(data)):
-            for j in range(len(data[i])):
-                if data[i][j] != '@': continue
+    return cnt
 
-                adj = 0
 
-                if i > 0:
-                    if data[i - 1][j] == '@': adj += 1
-                    if j > 0 and data[i - 1][j - 1] == '@': adj += 1
-                    if j < len(data[i]) - 1 and data[i - 1][j + 1] == '@': adj += 1
+def check_area(data, i, j):
+    adj = 0
+    mapping = {}
 
-                if i < len(data) - 1:
-                    if data[i + 1][j] == '@': adj += 1
-                    if j > 0 and data[i + 1][j - 1] == '@': adj += 1
-                    if j < len(data[i]) - 1 and data[i + 1][j + 1] == '@': adj += 1
+    if i > 0:
+        if data[i - 1][j] == '@': adj += 1; mapping[(i - 1, j)] = True
+        else: mapping[(i - 1, j)] = False
+        if j > 0 and data[i - 1][j - 1] == '@': adj += 1; mapping[(i - 1, j - 1)] = True
+        else: mapping[(i - 1, j - 1)] = False
+        if j < len(data[i]) - 1 and data[i - 1][j + 1] == '@': adj += 1; mapping[(i - 1, j + 1)] = True
+        else: mapping[(i - 1, j + 1)] = False
 
-                if j > 0 and data[i][j - 1] == '@': adj += 1
-                if j < len(data[i]) - 1 and data[i][j + 1] == '@': adj += 1
+    if i < len(data) - 1:
+        if data[i + 1][j] == '@': adj += 1; mapping[(i + 1, j)] = True
+        else: mapping[(i + 1, j)] = False
+        if j > 0 and data[i + 1][j - 1] == '@': adj += 1; mapping[(i + 1, j - 1)] = True
+        else: mapping[(i + 1, j - 1)] = False
+        if j < len(data[i]) - 1 and data[i + 1][j + 1] == '@': adj += 1; mapping[(i + 1, j + 1)] = True
+        else: mapping[(i + 1, j + 1)] = False
 
-                if adj < 4:
-                    data[i][j] = '.'
-                    cnt += 1
-                    removed += 1
+    if j > 0 and data[i][j - 1] == '@': adj += 1; mapping[(i, j - 1)] = True
+    else: mapping[(i, j - 1)] = False
+    if j < len(data[i]) - 1 and data[i][j + 1] == '@': adj += 1; mapping[(i, j + 1)] = True
+    else: mapping[(i, j + 1)] = False
+
+    return adj, mapping
+
+
+def rec_check(data, i, j):
+    adj, mapping = check_area(data, i, j)
+
+    if data[i][j] == '.' or adj >= 4: return 0
+
+    data[i][j] = '.'
+    cnt = 1
+
+    for k, v in mapping.items():
+        if v: cnt += rec_check(data, *k)
 
     return cnt
 
