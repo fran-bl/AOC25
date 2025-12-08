@@ -13,7 +13,7 @@ everything is written in **Python 3.12.3**
 - [Day 5](05/solution.py): ⭐⭐
 - [Day 6](06/solution.py): ⭐⭐
 - [Day 7](07/solution.py): ⭐⭐
-- [Day 8](08/solution.py):
+- [Day 8](08/solution.py): ⭐⭐
 - [Day 9](09/solution.py):
 - [Day 10](10/solution.py):
 - [Day 11](11/solution.py):
